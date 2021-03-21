@@ -3,12 +3,7 @@ import 'package:mr_movie/models/movie.dart';
 import 'package:provider/provider.dart';
 import 'package:shadow/shadow.dart';
 
-class MovieItem extends StatefulWidget {
-  @override
-  _MovieItemState createState() => _MovieItemState();
-}
-
-class _MovieItemState extends State<MovieItem> {
+class MovieTopItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final movieItemData = Provider.of<Movie>(context);
@@ -19,7 +14,8 @@ class _MovieItemState extends State<MovieItem> {
           opacity: 0.1,
           scale: 0.9,
           child: Container(
-            width: MediaQuery.of(context).size.width /3.7,
+            padding: EdgeInsets.all(15),
+            width: MediaQuery.of(context).size.width -16,
             child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 child: Image.network(

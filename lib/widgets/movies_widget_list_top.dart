@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mr_movie/providers/movies.dart';
-import 'package:mr_movie/widgets/movie_Item.dart';
+import 'package:mr_movie/widgets/movie_top_item.dart';
 import 'package:provider/provider.dart';
 
-class MovieList extends StatefulWidget {
+class MovieTop extends StatefulWidget {
   @override
-  _MovieListState createState() => _MovieListState();
+  _MovieTopState createState() => _MovieTopState();
 }
 
-class _MovieListState extends State<MovieList> {
+class _MovieTopState extends State<MovieTop> {
   @override
-  Widget build(BuildContext context) {       
+  Widget build(BuildContext context) {
     return Container(
-      
       child: FutureBuilder(
-        future: Provider.of<Movies>(context,listen: false).getLatest(),
+        future: Provider.of<Movies>(context,listen: false).getTop(),
         builder: (ctx, snapshot) {
             if(snapshot.connectionState == ConnectionState.waiting)
                  return Center(
@@ -27,10 +26,10 @@ class _MovieListState extends State<MovieList> {
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           primary: false,
-                          itemCount: value.moviesLatest.length,
+                          itemCount: value.moviesTop.length,
                           itemBuilder: (ctxx, index) => ChangeNotifierProvider.value(
-                            value: value.moviesLatest[index],
-                            builder: (ctxxxx, child) => Container(padding: EdgeInsets.symmetric(horizontal: 6),child: MovieItem()),
+                            value: value.moviesTop[index],
+                            builder: (ctxxxx, child) => Container(padding: EdgeInsets.symmetric(horizontal: 6),child: MovieTopItem()),
                           ),
                         );
                       }
