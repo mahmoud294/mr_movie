@@ -13,29 +13,27 @@ class _MoviePopularState extends State<MoviePopular> {
   Widget build(BuildContext context) {
     return Container(
       child: FutureBuilder(
-        future: Provider.of<Movies>(context,listen: false).getpop(),
+        future: Provider.of<Movies>(context, listen: false).getpop(),
         builder: (ctx, snapshot) {
-            if(snapshot.connectionState == ConnectionState.waiting)
-                 return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                 return Container(
-                   
-                    child: Consumer<Movies>(                                        
-                      builder: (ctxxxxx, value, child)  {
-                        return ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          primary: false,
-                          itemCount: value.moviesPop.length,
-                          itemBuilder: (ctxx, index) => ChangeNotifierProvider.value(
-                            value: value.moviesPop[index],
-                            builder: (ctxxxx, child) => Container(padding: EdgeInsets.symmetric(horizontal: 6),child: MovieItem()),
-                          ),
-                        );
-                      }
-                    ),
-                  );
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          return Container(
+            child: Consumer<Movies>(builder: (ctxxxxx, value, child) {
+              return ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                primary: false,
+                itemCount: value.moviesPop.length,
+                itemBuilder: (ctxx, index) => ChangeNotifierProvider.value(
+                  value: value.moviesPop[index],
+                  builder: (ctxxxx, child) => Container(width: 220,height: 330,child:MovieItem()
+                      ),
+                ),
+              );
+            }),
+          );
         },
       ),
     );

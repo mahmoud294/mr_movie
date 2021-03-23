@@ -15,12 +15,12 @@ class MovieTopItem extends StatelessWidget {
           scale: 0.9,
           child: Container(
             padding: EdgeInsets.all(15),
-            width: MediaQuery.of(context).size.width -16,
+            width: MediaQuery.of(context).size.width -20,
             child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 child: Image.network(
                   '${movieItemData.imageLink}',
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                 )),
           ),
         ),

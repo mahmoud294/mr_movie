@@ -30,7 +30,7 @@ class _MovieListState extends State<MovieList> {
                           itemCount: value.moviesLatest.length,
                           itemBuilder: (ctxx, index) => ChangeNotifierProvider.value(
                             value: value.moviesLatest[index],
-                            builder: (ctxxxx, child) => Container(padding: EdgeInsets.symmetric(horizontal: 6),child: MovieItem()),
+                            builder: (ctxxxx, child) => Container(child: MovieItem()),
                           ),
                         );
                       }
