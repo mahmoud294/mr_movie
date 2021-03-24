@@ -3,13 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mr_movie/models/movie.dart';
 import 'package:http/http.dart' as http;
+import 'package:mr_movie/providers/key.dart';
 
 class Movies with ChangeNotifier {
   List<Movie> _moviesPop = [];
   List<Movie> get moviesPop {
     return [..._moviesPop];
   }
-
+  String idToken=Keys().idKey;
   List<Movie> _moviesTop = [];
   List<Movie> get moviesTop {
     return [..._moviesTop];
@@ -22,7 +23,7 @@ class Movies with ChangeNotifier {
 
   Future<void> getLatest() async {
     Uri url = Uri.parse(
-        'https://api.themoviedb.org/3/movie/now_playing?api_key=5cf33205931ff8d1516dfae71d75305e&language=en-US&page=1');
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=$idToken&language=en-US&page=1');
     try {
       final response = await http.get(url);
       final resData = json.decode(response.body) as Map<String, dynamic>;
@@ -49,7 +50,7 @@ class Movies with ChangeNotifier {
 
   Future<void> getpop() async {
     Uri url = Uri.parse(
-        'https://api.themoviedb.org/3/movie/popular?api_key=5cf33205931ff8d1516dfae71d75305e&language=en-US&page=1');
+        'https://api.themoviedb.org/3/movie/popular?api_key=$idToken&language=en-US&page=1');
     try {
       final response = await http.get(url);
       final resData = json.decode(response.body) as Map<String, dynamic>;
@@ -76,7 +77,7 @@ class Movies with ChangeNotifier {
 
   Future<void> getTop() async {
     Uri url = Uri.parse(
-        'https://api.themoviedb.org/3/movie/top_rated?api_key=5cf33205931ff8d1516dfae71d75305e&language=en-US&page=1');
+        'https://api.themoviedb.org/3/movie/top_rated?api_key=$idToken&language=en-US&page=1');
     try {
       final response = await http.get(url);
       final resData = json.decode(response.body) as Map<String, dynamic>;
